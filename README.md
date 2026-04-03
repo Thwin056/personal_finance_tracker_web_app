@@ -163,6 +163,7 @@ Notes:
 - `GEMINI_API_KEY` or `GOOGLE_API_KEY` can be used.
 - Gemini usage requires a valid key, a billing-enabled project, and a supported model.
 - `RESEND_MAILER_SENDER` must be verified in Resend.
+- Sensitive external service credentials are intentionally not included in this repository.
 
 ### Frontend `.env`
 
@@ -207,6 +208,27 @@ Default local endpoints:
 
 - Frontend: `http://localhost:5173`
 - Backend API: `http://localhost:8001/api`
+
+## Important Note for Cloned Repositories
+
+If another user, tutor, or marker clones this repository, the full application will not have working AI and email features by default unless they provide their own valid environment variables.
+
+This is intentional for security reasons. Private credentials are not committed to the repository, including:
+
+- MongoDB connection string
+- Gemini API credentials
+- Cloudinary credentials
+- Resend credentials
+
+Without these values:
+
+- the project structure and most frontend code can still be reviewed
+- basic local development can still be inspected
+- AI receipt scanning will not work
+- AI report insight generation will not work
+- report email sending will not work
+
+To test the full functionality locally, the user must create their own `backend/.env` and `frontend/.env` files and provide valid service credentials.
 
 ## Important Backend Flows
 
@@ -259,6 +281,12 @@ Important:
 3. Upload a `JPG` or `PNG` receipt.
 4. Confirm the extracted transaction fields appear in the form.
 
+This feature requires:
+
+- valid Gemini API credentials
+- valid Cloudinary credentials
+- a correctly configured backend `.env`
+
 ### Test report AI from the UI
 
 1. Open `Reports`.
@@ -268,12 +296,24 @@ Important:
    - Gemini-generated insights
    - top categories
 
+This feature requires:
+
+- valid Gemini API credentials
+- a supported Gemini model
+- a billing-enabled Gemini project if required by quota/model access
+
 ### Test report email from the UI
 
 1. Open `Reports`.
 2. Click `Resend`.
 3. Confirm the success toast appears.
 4. Check the destination inbox.
+
+This feature requires:
+
+- valid Resend credentials
+- a verified sender email or domain
+- valid backend environment configuration
 
 ### Test currency conversion from the UI
 

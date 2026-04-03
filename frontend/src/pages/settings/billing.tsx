@@ -74,7 +74,7 @@ const Billing = () => {
         <CardHeader>
           <CardTitle>Quick Conversion</CardTitle>
           <CardDescription>
-            Uses built-in exchange rates for demo and project-testing purposes.
+            Get quick exchange estimates across supported currencies.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
